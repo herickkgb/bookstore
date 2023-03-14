@@ -26,22 +26,23 @@ public class Categoria implements Serializable{
 	@OneToMany(mappedBy =  "categoria")
 	private List<Livro> livros = new ArrayList<>();
 
+	public List<Livro> getLivros() {
+		return livros;
+	}
+
+	public void setLivros(List<Livro> livros) {
+		this.livros = livros;
+	}
+
 	public Categoria() {
 		super();
 	}
 
-	public Categoria(int id, String nome, String descricao) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.descricao = descricao;
-	}
-
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -61,12 +62,8 @@ public class Categoria implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public List<Livro> getLivros() {
-		return livros;
-	}
-
-	public void setLivros(List<Livro> livros) {
-		this.livros = livros;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
@@ -83,7 +80,14 @@ public class Categoria implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Categoria other = (Categoria) obj;
-		return id == other.id;
+		return Objects.equals(id, other.id);
 	}
 
+	public Categoria(Integer id, String nome, String descricao) {
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+	}
+
+	
 }
